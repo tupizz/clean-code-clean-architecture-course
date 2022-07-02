@@ -1,53 +1,46 @@
-// @ts-nocheck
-export function validate(str) {
-  if (str !== null) {
-    if (str !== undefined) {
-      if (str.length >= 11 || str.length <= 14) {
-        str = str
-          .replace(".", "")
-          .replace(".", "")
-          .replace("-", "")
-          .replace(" ", "");
+const FIRST_DIGIT_FACTOR = 10;
+const SECOND_DIGIT_FACTOR = 11;
 
-        if (!str.split("").every((c) => c === str[0])) {
-          try {
-            let d1, d2;
-            let dg1, dg2, rest;
-            let digito;
-            let nDigResult;
-            d1 = d2 = 0;
-            dg1 = dg2 = rest = 0;
+function isInvalidLength(cpf: number[]) {
+  return cpf.length !== 11;
+}
 
-            for (let nCount = 1; nCount < str.length - 1; nCount++) {
-              // if (isNaN(parseInt(str.substring(nCount -1, nCount)))) {
-              // 	return false;
-              // } else {
+function isIdenticalEachDigit(cpf: number[]) {
+  const [firstDigit] = cpf;
+  return cpf.every((digit) => digit === firstDigit);
+}
 
-              digito = parseInt(str.substring(nCount - 1, nCount));
-              d1 = d1 + (11 - nCount) * digito;
+function calculateCheckDigit(cpf: number[], factor: number) {
+  const total = cpf.reduce((total, digit) => {
+    if (factor > 1) total += digit * factor--;
+    return total;
+  }, 0);
+  const rest = total % 11;
+  return rest < 2 ? 0 : 11 - rest;
+}
 
-              d2 = d2 + (12 - nCount) * digito;
-              // }
-            }
+function extractCheckDigit(cpf: number[]) {
+  return parseInt(cpf.join("").slice(-2));
+}
+function cleanUpCpfString(cpf: string) {
+  return [...cpf.replace(/\D/g, "")].map((number) => parseInt(number));
+}
 
-            rest = d1 % 11;
+export function validate(cpfString: string) {
+  if (!cpfString) return false;
+  const cpf = cleanUpCpfString(cpfString);
+  if (isInvalidLength(cpf)) return false;
+  if (isIdenticalEachDigit(cpf)) return false;
 
-            dg1 = rest < 2 ? (dg1 = 0) : 11 - rest;
-            d2 += 2 * dg1;
-            rest = d2 % 11;
-            if (rest < 2) dg2 = 0;
-            else dg2 = 11 - rest;
+  const checkDigit = extractCheckDigit(cpf);
 
-            let nDigVerific = str.substring(str.length - 2, str.length);
-            nDigResult = "" + dg1 + "" + dg2;
-            return nDigVerific == nDigResult;
-          } catch (e) {
-            console.error("Erro !" + e);
+  const calculatedCheckDigit1 = calculateCheckDigit(cpf, FIRST_DIGIT_FACTOR);
+  if ([...checkDigit.toString()][0] !== calculatedCheckDigit1.toString())
+    return false;
 
-            return false;
-          }
-        } else return false;
-      } else return false;
-    }
-  } else return false;
+  const calculatedCheckDigit2 = calculateCheckDigit(cpf, SECOND_DIGIT_FACTOR);
+  if ([...checkDigit.toString()][1] !== calculatedCheckDigit2.toString())
+    return false;
+
+  return true;
 }
