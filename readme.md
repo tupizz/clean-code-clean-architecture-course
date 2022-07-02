@@ -1,18 +1,19 @@
 # Introduction
 
-- Tenha desenvolvido um olhar mais crítico e profissional em relação ao desenvolvimento de software, elevando seu nível de maturidade
-- Saiba aplicar diversas técnicas de Clean Code e Refactoring com o objetivo de tornar o código mais limpo e compreensível
-- Conheça vários Design Patterns e entenda como eles podem ajudar a criar código mais desacoplado e manutenível
-- Entenda como desenvolver utilizando Test-Driven Development
-- Domine os princípios da Programação Orientada a Objetos
-- Saiba como estruturar a arquitetura da sua aplicação utilizando Ports and Adapters, Clean Architecture e Domain-Driven Design
-- Conheça Event Sourcing e CQRS para implementar funcionalidades orientadas a eventos
-- Entender os princípios de Event-Driven Architecture
-- Entender SOLID de uma vez por todas
-- Ver na prática a diferença entre MVC, MVP e MVVM
-- Se torne uma pessoa muito mais confiante no dia a dia de trabalho, em entrevistas de emprego, principalmente se estiver querendo alavancar a sua carreira
-- Busque fomentar um ambiente de trabalho baseado na qualidade dentro da sua equipe
-- Com certeza, mesmo que você não tenha experiência com JavaScript e TypeScript, vai sair dominando os principais conceitos da linguagem
+- Have developed a more critical and professional look at software development, raising its level of maturity
+- Know how to apply several Clean Code and Refactoring techniques to make the code cleaner and more understandable
+- Learn about various Design Patterns and understand how they can help create more decoupled and maintainable code
+- Understand how to develop using Test Driven Development
+- Master the principles of Object Oriented Programming
+- Learn to structure your application's architecture using ports and adapters, clean architecture and domain-oriented design
+- Learn about Event Sourcing and CQRS to implement event-driven features
+- Understand the principles of Event Oriented Architecture
+- Understand SOLID once and for all
+- See in practice the difference between MVC, MVP and MVVM
+- Become a much more confident person in your day to day work, in job interviews, especially if you are looking to leverage your career
+- Seek to foster a work environment based on quality within your team
+- For sure, even if you have no experience with JavaScript and TypeScript, you will come out mastering the main concepts of the language
+
 
 # Quick reference
 
