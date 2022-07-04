@@ -35,11 +35,11 @@ export function validate(cpfString: string) {
   const checkDigit = extractCheckDigit(cpf);
 
   const calculatedCheckDigit1 = calculateCheckDigit(cpf, FIRST_DIGIT_FACTOR);
-  if ([...checkDigit.toString()][0] !== calculatedCheckDigit1.toString())
+  if (checkDigit.toString().charAt(0) !== calculatedCheckDigit1.toString())
     return false;
 
   const calculatedCheckDigit2 = calculateCheckDigit(cpf, SECOND_DIGIT_FACTOR);
-  if ([...checkDigit.toString()][1] !== calculatedCheckDigit2.toString())
+  if (checkDigit.toString().charAt(1) !== calculatedCheckDigit2.toString())
     return false;
 
   return true;
