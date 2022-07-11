@@ -35,10 +35,10 @@ describe("Order", () => {
 
     order.addItem(new Item(playstationItemPayload), 1);
     order.addItem(new Item(ferroDePassarPayload), 1);
-    order.addItem(new Item(cabidePayload), 10);
+    order.addItem(new Item(cabidePayload), 3);
 
     const total = order.getTotal();
-    expect(total).toBe(6738.56);
+    expect(total).toBe(5479.75);
   });
 
   test("Deve criar um pedido com 3 items e aplicar cupom", () => {
