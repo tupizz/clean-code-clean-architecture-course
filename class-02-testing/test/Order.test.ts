@@ -1,6 +1,11 @@
 import Coupon from "../src/Coupon";
 import Item from "../src/Item";
 import Order from "../src/Order";
+import {
+  cabidePayload,
+  ferroDePassarPayload,
+  playstationItemPayload,
+} from "./data/order-data";
 
 describe("Order", () => {
   test("Deve criar um pedido vazio", () => {
@@ -17,20 +22,7 @@ describe("Order", () => {
       cpf: "117.230.476-94",
     });
 
-    order.addItem(
-      new Item({
-        id: 1,
-        name: "Playstation",
-        price: 5000,
-        weight: 1,
-        dimensions: {
-          depth: 20,
-          height: 15,
-          width: 10,
-        },
-      }),
-      1
-    );
+    order.addItem(new Item(playstationItemPayload), 1);
 
     const shippingPrice = order.getShippingPrice();
     expect(shippingPrice).toBe(10);
@@ -41,48 +33,9 @@ describe("Order", () => {
       cpf: "117.230.476-94",
     });
 
-    order.addItem(
-      new Item({
-        id: 1,
-        name: "Playstation",
-        price: 5000,
-        weight: 1,
-        dimensions: {
-          depth: 20,
-          height: 15,
-          width: 10,
-        },
-      }),
-      1
-    );
-    order.addItem(
-      new Item({
-        id: 2,
-        name: "Ferro de passar",
-        price: 200,
-        weight: 1,
-        dimensions: {
-          depth: 20,
-          height: 15,
-          width: 10,
-        },
-      }),
-      1
-    );
-    order.addItem(
-      new Item({
-        id: 3,
-        name: "Cabide",
-        price: 10,
-        weight: 1,
-        dimensions: {
-          depth: 20,
-          height: 15,
-          width: 10,
-        },
-      }),
-      10
-    );
+    order.addItem(new Item(playstationItemPayload), 1);
+    order.addItem(new Item(ferroDePassarPayload), 1);
+    order.addItem(new Item(cabidePayload), 10);
 
     const total = order.getTotal();
     expect(total).toBe(6738.56);
@@ -93,48 +46,9 @@ describe("Order", () => {
       cpf: "117.230.476-94",
     });
 
-    order.addItem(
-      new Item({
-        id: 1,
-        name: "Playstation",
-        price: 5000,
-        weight: 1,
-        dimensions: {
-          depth: 20,
-          height: 15,
-          width: 10,
-        },
-      }),
-      1
-    );
-    order.addItem(
-      new Item({
-        id: 2,
-        name: "Ferro de passar",
-        price: 200,
-        weight: 1,
-        dimensions: {
-          depth: 20,
-          height: 15,
-          width: 10,
-        },
-      }),
-      1
-    );
-    order.addItem(
-      new Item({
-        id: 3,
-        name: "Cabide",
-        price: 10,
-        weight: 1,
-        dimensions: {
-          depth: 20,
-          height: 15,
-          width: 10,
-        },
-      }),
-      10
-    );
+    order.addItem(new Item(playstationItemPayload), 1);
+    order.addItem(new Item(ferroDePassarPayload), 1);
+    order.addItem(new Item(cabidePayload), 10);
 
     const futureDate = new Date();
     futureDate.setMonth(futureDate.getMonth() + 3);
@@ -156,48 +70,9 @@ describe("Order", () => {
       cpf: "117.230.476-94",
     });
 
-    order.addItem(
-      new Item({
-        id: 1,
-        name: "Playstation",
-        price: 5000,
-        weight: 1,
-        dimensions: {
-          depth: 20,
-          height: 15,
-          width: 10,
-        },
-      }),
-      1
-    );
-    order.addItem(
-      new Item({
-        id: 2,
-        name: "Ferro de passar",
-        price: 200,
-        weight: 1,
-        dimensions: {
-          depth: 10,
-          height: 5,
-          width: 5,
-        },
-      }),
-      1
-    );
-    order.addItem(
-      new Item({
-        id: 3,
-        name: "Cabide",
-        price: 10,
-        weight: 0.5,
-        dimensions: {
-          depth: 2,
-          height: 5,
-          width: 1,
-        },
-      }),
-      1
-    );
+    order.addItem(new Item(playstationItemPayload), 1);
+    order.addItem(new Item(ferroDePassarPayload), 1);
+    order.addItem(new Item(cabidePayload), 1);
 
     const pastDate = new Date();
     pastDate.setMonth(pastDate.getMonth() - 3);
@@ -211,7 +86,7 @@ describe("Order", () => {
     );
 
     const total = order.getTotal();
-    expect(total).toBe(6981.26);
+    expect(total).toBe(5299.91);
   });
 
   test("Não deve criar uma order com quantidade de item negativa", () => {
@@ -219,22 +94,9 @@ describe("Order", () => {
       cpf: "117.230.476-94",
     });
 
-    expect(() =>
-      order.addItem(
-        new Item({
-          id: 1,
-          name: "Playstation",
-          price: 5000,
-          weight: 10,
-          dimensions: {
-            depth: 2,
-            height: 5,
-            width: 10,
-          },
-        }),
-        -1
-      )
-    ).toThrow(new Error("Invalid Quantity"));
+    expect(() => order.addItem(new Item(playstationItemPayload), -1)).toThrow(
+      new Error("Invalid Quantity")
+    );
   });
 
   test("Ao fazer um pedido, o mesmo item não pode ser informado mais de uma vez", () => {
@@ -242,17 +104,7 @@ describe("Order", () => {
       cpf: "117.230.476-94",
     });
 
-    const sameItem = new Item({
-      id: 1,
-      name: "Playstation",
-      price: 5000,
-      weight: 10,
-      dimensions: {
-        depth: 2,
-        height: 5,
-        width: 10,
-      },
-    });
+    const sameItem = new Item(playstationItemPayload);
     order.addItem(sameItem, 1);
 
     expect(() => order.addItem(sameItem, 1)).toThrow(
@@ -266,15 +118,8 @@ describe("Order", () => {
     });
 
     const item = new Item({
-      id: 1,
-      name: "Playstation",
-      price: 5000,
+      ...playstationItemPayload,
       weight: -10,
-      dimensions: {
-        depth: 2,
-        height: 5,
-        width: 10,
-      },
     });
 
     expect(() => order.addItem(item, 1)).toThrow(
@@ -288,14 +133,10 @@ describe("Order", () => {
     });
 
     const item = new Item({
-      id: 1,
-      name: "Playstation",
-      price: 5000,
-      weight: 10,
+      ...playstationItemPayload,
       dimensions: {
-        depth: -2,
-        height: -5,
-        width: -10,
+        ...playstationItemPayload.dimensions,
+        depth: -10,
       },
     });
 
