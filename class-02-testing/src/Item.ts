@@ -12,7 +12,7 @@ type ItemProperties = {
   };
 };
 
-type ConstructorParams = {
+export type ItemConstructorParams = {
   id: number;
   name: string;
   price: number;
@@ -26,7 +26,7 @@ type ConstructorParams = {
 
 export default class Item {
   public properties: ItemProperties;
-  constructor(readonly constructorParams: ConstructorParams) {
+  constructor(readonly constructorParams: ItemConstructorParams) {
     this.properties = {
       id: constructorParams.id,
       name: constructorParams.name,

@@ -1,4 +1,6 @@
-export const playstationItemPayload = {
+import { ItemConstructorParams } from "../../src/Item";
+
+export const playstationItemPayload: ItemConstructorParams = {
   id: 1,
   name: "Playstation",
   price: 5000,
@@ -10,7 +12,7 @@ export const playstationItemPayload = {
   },
 };
 
-export const ferroDePassarPayload = {
+export const ferroDePassarPayload: ItemConstructorParams = {
   id: 2,
   name: "Ferro de passar",
   price: 200,
@@ -22,7 +24,7 @@ export const ferroDePassarPayload = {
   },
 };
 
-export const cabidePayload = {
+export const cabidePayload: ItemConstructorParams = {
   id: 3,
   name: "Cabide",
   price: 10,
