@@ -26,13 +26,11 @@ export type ItemConstructorParams = {
 
 export default class Item {
   public properties: ItemProperties;
+
   constructor(readonly constructorParams: ItemConstructorParams) {
     this.properties = {
-      id: constructorParams.id,
-      name: constructorParams.name,
+      ...constructorParams,
       price: new BigNumber(constructorParams.price),
-      weight: constructorParams.weight,
-      dimensions: constructorParams.dimensions,
     };
   }
 
