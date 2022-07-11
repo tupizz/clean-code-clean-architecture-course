@@ -13,15 +13,25 @@ Vamos implementr um sistema de vendas online com a possibilidade de realizar ped
 # Tests
 
 1 - Não deve criar um pedido com cpf inválido ✅
+
 2 - Deve criar um pedido com 3 itens (com descrição, preço e quantidade) ✅
+
 3 - Deve criar um pedido com cupom de desconto (percentual sobre o total do pedido) ✅
+
 4 - Não deve aplicar cupom de desconto expirado ✅
+
 5 - Ao fazer um pedido, a quantidade de um item não pode ser negativa ✅
+
 6 - Ao fazer um pedido, o mesmo item não pode ser informado mais de uma vez ✅
+
 7 - Nenhuma dimensão do item pode ser negativa ✅
+
 8 - O peso do item não pode ser negativo ✅
+
 9 - Deve calcular o valor do frete com base nas dimensões (altura, largura e profundidade em cm) e o peso dos produtos (em kg) ✅
+
 10 - Deve retornar o preço mínimo de frete caso ele seja superior ao valor calculado ✅
+
 
 # Fórmulas
 
