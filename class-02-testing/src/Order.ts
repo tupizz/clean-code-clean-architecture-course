@@ -17,6 +17,7 @@ type OrderConstructorParams = {
 export default class Order {
   private properties: OrderProperties;
   private DISTANCE: number = 1000;
+  private MINIMUM_SHIPPING_PRICE: number = 10;
 
   constructor(constructorParams: OrderConstructorParams) {
     this.properties = {
@@ -66,7 +67,10 @@ export default class Order {
     }, 0);
 
     const shippingPrice = this.DISTANCE * totalVolume * (totalDensity / 100);
-    return shippingPrice > 10 ? shippingPrice : 10;
+
+    return shippingPrice > this.MINIMUM_SHIPPING_PRICE
+      ? shippingPrice
+      : this.MINIMUM_SHIPPING_PRICE;
   }
 
   getTotal(): number {
